@@ -7,7 +7,10 @@ countryside at sunrise; on the right, a red-brick Ontario farmhouse at sunset. A
 walks in from the left edge and a Canadian man from the right. They meet in the corridor of
 light between the homes and stop, facing each other.
 
-- Deliverable video: [`halfway.mp4`](halfway.mp4). It is rendered from `index.html` by `tools/render.mjs`.
+- Deliverable video: [`halfway.mp4`](halfway.mp4) (H.264 CRF 23, about 44 MB). A smaller
+  [`halfway-share.mp4`](halfway-share.mp4) (about 24 MB) is for messaging. Both are rendered from
+  `index.html` by `tools/render.mjs`, with every frame seeked exactly.
+- Poster: [`poster.png`](poster.png), a native-resolution print at 14.5 s.
 - Source: [`index.html`](index.html), a single self-contained page (Canvas 2D and embedded Opus
   audio, no network). The readable source is in [`../src`](../src) and is assembled by
   `tools/build.mjs`.
@@ -114,6 +117,8 @@ event data (`out/events.json`: footsteps, the look, the stop).
   drifts from the in scale to the yo scale (D E G A B), the notes the two worlds share.
 - **The meeting (12.22 s).** They stop on one open D chord (D A E F♯). Its top voice keeps the
   koto's grace note. The chord then opens upward on the two smiles and rings out.
+  Grace notes are lifted at once even under the pedal, so the ornament never rings on as a
+  semitone cluster.
 - **Foley and air**: footsteps on packed earth (left) and gravel (right), panned to their screen
   positions and quieter as each walker slows. A glass wind chime (furin) sounds on the Japanese
   side, with wind in the leaves and room air.

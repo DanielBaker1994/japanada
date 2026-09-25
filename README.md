@@ -5,7 +5,8 @@ brick farmhouse on the right. One low sun sits on the seam between them, rising 
 setting for the other. A Japanese woman and a Canadian man walk in from either edge and meet in
 the corridor of light between their homes.
 
-- **Watch:** [`film/halfway.mp4`](film/halfway.mp4) (1920×1080, 30 fps, AAC stereo)
+- **Watch:** [`film/halfway.mp4`](film/halfway.mp4) (1920×1080, 30 fps, AAC stereo, −16 LUFS).
+  A smaller copy for messaging is [`film/halfway-share.mp4`](film/halfway-share.mp4).
 - **Poster:** [`film/poster.png`](film/poster.png)
 - **Design notes:** [`film/FILM.md`](film/FILM.md) · **Audio credits:** [`film/AUDIO-SOURCES.md`](film/AUDIO-SOURCES.md)
 - **Source:** [`film/index.html`](film/index.html) is self-contained: open it in a browser and press
