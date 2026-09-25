@@ -74,8 +74,8 @@ def pedal_release(t_off):
 notes = []   # (t, midi, vel, hold, pan)
 def N_(t, name, vel, hold=0.4, pan=0.0, grace=None):
     notes.append((t, midi_of(name), vel, hold, pan))
-    if grace:
-        notes.append((t - 0.065, midi_of(grace), vel * 0.7, 0.06, pan))
+    if grace:   # an ornament is lifted at once, even under the pedal (negative hold = dry)
+        notes.append((t - 0.065, midi_of(grace), vel * 0.7, -0.1, pan))
 
 def midi_of(name):
     names = {'C': 0, 'C#': 1, 'Db': 1, 'D': 2, 'D#': 3, 'Eb': 3, 'E': 4, 'F': 5, 'F#': 6, 'Gb': 6, 'G': 7,
@@ -140,7 +140,7 @@ def render_piano():
         d, layer = sample_for(midi, vel)
         lay_vel = {5: 0.25, 8: 0.5, 11: 0.75}[layer]
         g = (vel / lay_vel) ** 1.3 * 0.9
-        end = pedal_release(t + hold)
+        end = t - hold if hold < 0 else pedal_release(t + hold)
         n = int((end - t) * SR) + int(0.3 * SR)
         s = d[:n].copy()
         rel0 = int((end - t) * SR)

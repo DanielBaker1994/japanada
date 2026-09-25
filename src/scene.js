@@ -293,17 +293,17 @@ function drawPath(id, col) {
   pen.fill(groundPoly(left.concat(right.reverse())), col);
   if (id === 'hana') {   // stepping stones set into the path
     for (let d = L - 1.2; d > L - 17; d -= 0.62 + r() * 0.1) {
-      const p = w.path(d), fr = frameH(p.h), s = 0.2 + r() * 0.06, o = (r() - 0.5) * 0.12;
-      pen.fill(groundPoly(ringXZ(p.x + fr.r[0] * o, p.z + fr.r[2] * o, s * 1.1, s * 0.85, 12)), C(0.3, 0.12, 0.3, 0.1, 0, 0.42));
+      const p = w.path(d), fr = frameH(p.h), s = 0.17 + r() * 0.05, o = (r() - 0.5) * 0.12;
+      pen.fill(groundPoly(ringXZ(p.x + fr.r[0] * o, p.z + fr.r[2] * o, s * 1.1, s * 0.85, 12)), C(0.34, 0.2, 0.42, 0.05, 0, 0.36));
     }
   } else {               // gravel: a scatter of small stones
     const g = new Path2D();
     for (let i = 0; i < 260; i++) {
-      const d = L + 0.5 - Math.pow(r(), 0.8) * 17, p = w.path(d), fr = frameH(p.h), o = (r() - 0.5) * 0.8, s = 0.02 + r() * 0.03;
+      const d = L + 0.5 - Math.pow(r(), 0.8) * 17, p = w.path(d), fr = frameH(p.h), o = (r() - 0.5) * 0.8, s = 0.012 + r() * 0.02;
       const q = pj(p.x + fr.r[0] * o, 0, p.z + fr.r[2] * o), rr = ppm(p.z) * s;
       g.addPath(ellipsePath(q[0], q[1], rr, rr * 0.6));
     }
-    pen.fill(g, cmix(col, C(0.1, 0.05, 0.1, 0.2, 0, 0.4), 0.5));
+    pen.fill(g, cmix(col, C(0.2, 0.15, 0.3, 0.1, 0, 0.45), 0.6));
   }
 }
 function ringXZ(x, z, rx, rz, n) { const o = []; for (let i = 0; i < n; i++) { const a = i / n * TAU; o.push([x + Math.cos(a) * rx, z + Math.sin(a) * rz]); } return o; }

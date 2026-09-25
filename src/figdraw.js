@@ -302,8 +302,8 @@ function torsoRings(w, ps, id) {
     at(pelFr, pel, 0.88 - D.hipH, 0.118, 0.178),
     at(chFr, pel, 1.05 - D.hipH, 0.112 * br, 0.168),
     at(chFr, pel, 1.22 - D.hipH, 0.126 * br, 0.184, 0.014),
-    at(chFr, pel, 1.33 - D.hipH, 0.11 * br, 0.206, 0.004),
-    at(chFr, pel, 1.385 - D.hipH, 0.08, 0.2, -0.012),
+    at(chFr, pel, 1.33 - D.hipH, 0.108 * br, 0.19, 0.004),
+    at(chFr, pel, 1.385 - D.hipH, 0.078, 0.182, -0.012),
     at(chFr, pel, 1.45 - D.hipH, 0.062, 0.068, -0.004),
   ];
 }
@@ -325,6 +325,10 @@ function drawArm(w, ps, side, lk, id, S) {
   const cuff = vmad(A.wrist, hd, isH ? 0.012 : -0.005);
   const sleeve = capsule([A.sh, A.elbow, cuff], sleeveR);
   litFill(sleeve, lk.top, lk.topLit, c[0], c[1], rim);
+  // a keyline where the sleeve crosses the body, so arm and torso read as two forms
+  pen.save(); pen.clip(sleeve);
+  pen.stroke(sleeve, cover(lk.top, C(0, 0.12, 0.08, 0.18, 0.05, 0.3)), Math.max(1.6, 0.012 * S), 'put', 0.9);
+  pen.restore();
   // a crease at the elbow and the cuff edge
   const e0 = P2(A.elbow), cf = P2(cuff);
   pen.save(); pen.clip(sleeve);

@@ -417,14 +417,24 @@ function drawSpruces(t) {
   const list = [];
   for (let i = 0; i < 24; i++) list.push([7 + r() * 30, 47 + r() * 16, 9 + r() * 7]);
   list.sort((a, b) => b[1] - a[1]);
+  const rr = rngFor('spruceShape');
+  // the forest mass behind the single trees, so their gaps show woods, not sky
+  const band = [[5.5, 0, 66]];
+  for (let x = 5.5; x <= 48; x += 0.9) band.push([x, 4.2 + rr() * 2.2 + (Math.floor(x / 0.9) % 2) * 1.4, 66]);
+  band.push([48, 0, 66]);
+  pen.fill(Q3(band), cmix(PAL.spruce, PAL.haze, 0.25));
   for (const [x, z, h] of list) {
-    const pts = [], tiers = 9;
-    for (let k = 0; k <= tiers; k++) {
-      const y = h * (0.12 + 0.88 * k / tiers), w = (1 - k / tiers) * h * 0.24 + 0.1;
-      pts.push([x - w, y - 0.5, z], [x - w * 0.35, y + 0.15, z]);
+    // a narrow spire over drooping tiers of branches, each tier a little ragged
+    const tiers = 9 + Math.floor(rr() * 5), left = [], right = [];
+    for (let k = 0; k < tiers; k++) {
+      const u = k / tiers, y = h * (0.08 + 0.9 * u), th = h * 0.9 / tiers;
+      const w = Math.pow(1 - u, 0.85) * h * 0.2 + 0.12;
+      const jl = 0.85 + rr() * 0.3, jr = 0.85 + rr() * 0.3;
+      left.push([x - w * jl, y - th * 0.35, z], [x - w * 0.32, y + th * 0.3, z]);
+      right.push([x + w * jr, y - th * 0.35, z], [x + w * 0.32, y + th * 0.3, z]);
     }
-    const left = pts, right = pts.map(([px, py, pz]) => [2 * x - px, py, pz]).reverse();
-    pen.fill(Q3([[x - 0.1, 0, z]].concat(left, [[x, h + 0.5, z]], right, [[x + 0.1, 0, z]])), PAL.spruce);
+    const outline = [[x - 0.12, 0, z]].concat(left, [[x, h + 0.6, z]], right.reverse(), [[x + 0.12, 0, z]]);
+    pen.fill(Q3(outline), PAL.spruce);
   }
 }
 function drawFence(t) {     // split-rail fence along the lawn
